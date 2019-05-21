@@ -1,6 +1,6 @@
 package gocoord
 
-imoprt(
+import (
 	"math"
 )
 

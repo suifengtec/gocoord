@@ -5,7 +5,7 @@
 
 ```bash
 
-go get https://github.com/suifengtec/goCoord
+go get github.com/suifengtec/goCoord
 
 ```
 

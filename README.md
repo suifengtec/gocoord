@@ -5,7 +5,7 @@
 
 ```bash
 
-go get github.com/suifengtec/goCoord
+go get https://github.com/suifengtec/goCoord
 
 ```
 
@@ -13,30 +13,30 @@ go get github.com/suifengtec/goCoord
 
 ```go
 
-import(
-    "github.com/suifengtec/goCoord"
-    "fmt"
+package main
+
+import (
+	"fmt"
+	gocoord "github.com/suifengtec/goCoord"
 )
 
 func main() {
-
-	p := Position{113.739873, 34.356696}
+	p := gocoord.Position{Lon: 113.739873, Lat: 34.356696}
 	//BD09ToGCJ02
 	// 谷歌地图显示为
 	// 113.733355， 34.350604
+	// 实际输出为gocoord.Position{Lon:113.73337197243862, Lat:34.350630274732744}
 	fmt.Println("BD09转GCJ02")
-	p2 := BD09ToGCJ02(p)
+	p2 := gocoord.BD09ToGCJ02(p)
 	fmt.Printf("%#v\n", p2)
 
 	//BD09ToWGS84
+	// 实际输出为 gocoord.Position{Lon:113.7272281721665, Lat:34.351951705458674}
 	fmt.Println("BD09转WGS84")
-	p2 = BD09ToWGS84(p)
+	p2 = gocoord.BD09ToWGS84(p)
 	fmt.Printf("%#v\n", p2)
 
-
-
 }
-
 
 
 ```

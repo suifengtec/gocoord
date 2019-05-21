@@ -11,7 +11,7 @@
 
 ```bash
 
-go get https://github.com/suifengtec/goCoord
+go get https://github.com/suifengtec/gocoord
 
 ```
 
@@ -23,7 +23,7 @@ package main
 
 import (
 	"fmt"
-	gocoord "github.com/suifengtec/goCoord"
+	"github.com/suifengtec/gocoord"
 )
 
 func main() {

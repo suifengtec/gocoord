@@ -1,4 +1,7 @@
 # gocoord
+
+[![wercker status](https://app.wercker.com/status/78da03fb6f650111e017cc31965a5ce7/s/master "wercker status")](https://app.wercker.com/project/byKey/78da03fb6f650111e017cc31965a5ce7)
+
 在BD09,GCJ02,WGS84坐标系之间相互转换点的坐标。
 
 高德地图、腾讯地图以及谷歌中国区地图使用的是GCJ-02坐标系;

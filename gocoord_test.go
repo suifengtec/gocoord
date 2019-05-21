@@ -1,53 +1,55 @@
-package gocoord
+package gocoord_test
 
 import (
 	"math"
 	"testing"
+
+	"github.com/suifengtec/gocoord"
 )
 
 var testsCases = []struct {
-	from          Position
-	expectedValue Position
+	from          gocoord.Position
+	expectedValue gocoord.Position
 }{
 	{ // BD09ToGCJ02
-		Position{Lon: 113.739873, Lat: 34.356696},
-		Position{Lon: 113.73337197243862, Lat: 34.350630274732744},
+		gocoord.Position{Lon: 113.739873, Lat: 34.356696},
+		gocoord.Position{Lon: 113.73337197243862, Lat: 34.350630274732744},
 	},
 	{ //BD09ToWGS84
-		Position{Lon: 113.739873, Lat: 34.356696},
-		Position{Lon: 113.7272281721665, Lat: 34.351951705458674},
+		gocoord.Position{Lon: 113.739873, Lat: 34.356696},
+		gocoord.Position{Lon: 113.7272281721665, Lat: 34.351951705458674},
 	},
 	{ //WGS84ToBD09
-		Position{Lon: 113.739873, Lat: 34.356696},
-		Position{Lon: 113.75246057307969, Lat: 34.3616443275599},
+		gocoord.Position{Lon: 113.739873, Lat: 34.356696},
+		gocoord.Position{Lon: 113.75246057307969, Lat: 34.3616443275599},
 	},
 	{ //WGS84ToGCJ02
-		Position{Lon: 113.739873, Lat: 34.356696},
-		Position{Lon: 113.74601884470827, Lat: 34.35538495876689},
+		gocoord.Position{Lon: 113.739873, Lat: 34.356696},
+		gocoord.Position{Lon: 113.74601884470827, Lat: 34.35538495876689},
 	},
 	{ //GCJ02ToBD09
-		Position{Lon: 113.739873, Lat: 34.356696},
-		Position{Lon: 113.7463400404353, Lat: 34.36287007240432},
+		gocoord.Position{Lon: 113.739873, Lat: 34.356696},
+		gocoord.Position{Lon: 113.7463400404353, Lat: 34.36287007240432},
 	},
 	{ //GCJ02ToWGS84
-		Position{Lon: 113.739873, Lat: 34.356696},
-		Position{Lon: 113.73372688226371, Lat: 34.358009517422026},
+		gocoord.Position{Lon: 113.739873, Lat: 34.356696},
+		gocoord.Position{Lon: 113.73372688226371, Lat: 34.358009517422026},
 	},
 
 	{ //BD09toBD09MC
-		Position{Lon: 113.739873, Lat: 34.356696},
-		Position{Lon: 1.266160251233583e+07, Lat: 4.052461800944403e+06},
+		gocoord.Position{Lon: 113.739873, Lat: 34.356696},
+		gocoord.Position{Lon: 1.266160251233583e+07, Lat: 4.052461800944403e+06},
 	},
 	{ //BD09MCtoBD09
-		Position{Lon: 113.739873, Lat: 34.356696},
-		Position{Lon: 0.0010217344366200546, Lat: 0.000310700669093249},
+		gocoord.Position{Lon: 113.739873, Lat: 34.356696},
+		gocoord.Position{Lon: 0.0010217344366200546, Lat: 0.000310700669093249},
 	},
 }
 
 func TestBD09ToGCJ02(t *testing.T) {
 
 	input := testsCases[0]
-	ret := BD09ToGCJ02(input.from)
+	ret := gocoord.BD09ToGCJ02(input.from)
 
 	if math.Abs(ret.Lat-input.expectedValue.Lat) > 1e-6 {
 		t.Errorf("FAIL: BD09ToGCJ02 测试的输入是 %#v ,期望得到 : %#v ,但计算结果为 %#v",
@@ -61,7 +63,7 @@ func TestBD09ToGCJ02(t *testing.T) {
 func TestBD09ToWGS84(t *testing.T) {
 
 	input := testsCases[1]
-	ret := BD09ToWGS84(input.from)
+	ret := gocoord.BD09ToWGS84(input.from)
 
 	if math.Abs(ret.Lat-input.expectedValue.Lat) > 1e-6 {
 		t.Errorf("FAIL: BD09ToWGS84 测试的输入是 %#v ,期望得到 : %#v ,但计算结果为 %#v",
@@ -75,7 +77,7 @@ func TestBD09ToWGS84(t *testing.T) {
 func TestWGS84ToBD09(t *testing.T) {
 
 	input := testsCases[2]
-	ret := WGS84ToBD09(input.from)
+	ret := gocoord.WGS84ToBD09(input.from)
 
 	if math.Abs(ret.Lat-input.expectedValue.Lat) > 1e-3 {
 
@@ -91,7 +93,7 @@ func TestWGS84ToBD09(t *testing.T) {
 func TestWGS84ToGCJ02(t *testing.T) {
 
 	input := testsCases[3]
-	ret := WGS84ToGCJ02(input.from)
+	ret := gocoord.WGS84ToGCJ02(input.from)
 
 	if math.Abs(ret.Lat-input.expectedValue.Lat) > 1e-3 {
 
@@ -106,7 +108,7 @@ func TestWGS84ToGCJ02(t *testing.T) {
 func TestGCJ02ToBD09(t *testing.T) {
 
 	input := testsCases[4]
-	ret := GCJ02ToBD09(input.from)
+	ret := gocoord.GCJ02ToBD09(input.from)
 
 	if math.Abs(ret.Lat-input.expectedValue.Lat) > 1e-3 {
 
@@ -121,7 +123,7 @@ func TestGCJ02ToBD09(t *testing.T) {
 func TestGCJ02ToWGS84(t *testing.T) {
 
 	input := testsCases[5]
-	ret := GCJ02ToWGS84(input.from)
+	ret := gocoord.GCJ02ToWGS84(input.from)
 
 	if math.Abs(ret.Lat-input.expectedValue.Lat) > 1e-3 {
 
@@ -137,7 +139,7 @@ func TestGCJ02ToWGS84(t *testing.T) {
 func TestBD09toBD09MC(t *testing.T) {
 
 	input := testsCases[6]
-	ret := BD09toBD09MC(input.from)
+	ret := gocoord.BD09toBD09MC(input.from)
 
 	if math.Abs(ret.Lat-input.expectedValue.Lat) > 1e-3 {
 
@@ -152,7 +154,7 @@ func TestBD09toBD09MC(t *testing.T) {
 func TestBD09MCtoBD09(t *testing.T) {
 
 	input := testsCases[7]
-	ret := BD09MCtoBD09(input.from)
+	ret := gocoord.BD09MCtoBD09(input.from)
 
 	if math.Abs(ret.Lat-input.expectedValue.Lat) > 1e-3 {
 

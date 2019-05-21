@@ -23,7 +23,10 @@ go get github.com/suifengtec/gocoord
 
 ```
 
-源文件中导入并使用
+
+## 使用示例
+
+源文件中导入并使用,下面是部分方法的使用示例:
 
 ```go
 

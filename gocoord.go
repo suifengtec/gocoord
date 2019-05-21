@@ -248,6 +248,36 @@ func transformLon(x, y float64) float64 {
 	return ret
 }
 
+func transform(x, y float64, factors []float64) Position {
+
+	cc := math.Abs(y) / factors[9]
+	xt := factors[0] + factors[1]*math.Abs(x)
+	yt :=
+		factors[2] +
+			factors[3]*cc +
+			factors[4]*math.Pow(cc, 2) +
+			factors[5]*math.Pow(cc, 3) +
+			factors[6]*math.Pow(cc, 4) +
+			factors[7]*math.Pow(cc, 5) +
+			factors[8]*math.Pow(cc, 6)
+
+	if x < 0 {
+
+		xt *= -1
+	} else {
+		xt *= 1
+	}
+
+	if y < 0 {
+
+		yt *= -1
+	} else {
+		yt *= 1
+	}
+
+	return Position{Lon: xt, Lat: yt}
+}
+
 // GCJ02ToWGS84 ...
 func GCJ02ToWGS84(coord Position) Position {
 
@@ -289,8 +319,6 @@ func WGS84ToGCJ02(coord Position) Position {
 	return Position{Lon: lon + d[0], Lat: lat + d[1]}
 }
 
-/////////////////////百度与国测局/////////////////////////
-
 // BD09ToGCJ02 ...
 func BD09ToGCJ02(coord Position) Position {
 
@@ -316,36 +344,6 @@ func GCJ02ToBD09(coord Position) Position {
 	newLat := z*math.Sin(theta) + 0.006
 
 	return Position{Lon: newLon, Lat: newLat}
-}
-
-func transform(x, y float64, factors []float64) Position {
-
-	cc := math.Abs(y) / factors[9]
-	xt := factors[0] + factors[1]*math.Abs(x)
-	yt :=
-		factors[2] +
-			factors[3]*cc +
-			factors[4]*math.Pow(cc, 2) +
-			factors[5]*math.Pow(cc, 3) +
-			factors[6]*math.Pow(cc, 4) +
-			factors[7]*math.Pow(cc, 5) +
-			factors[8]*math.Pow(cc, 6)
-
-	if x < 0 {
-
-		xt *= -1
-	} else {
-		xt *= 1
-	}
-
-	if y < 0 {
-
-		yt *= -1
-	} else {
-		yt *= 1
-	}
-
-	return Position{Lon: xt, Lat: yt}
 }
 
 // BD09toBD09MC ...

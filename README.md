@@ -23,8 +23,7 @@ go get github.com/suifengtec/gocoord
 
 ```
 
-
-## 使用示例
+## 用例
 
 源文件中导入并使用,下面是部分方法的使用示例:
 
@@ -39,7 +38,7 @@ import (
 
 func main() {
 	p := gocoord.Position{Lon: 113.739873, Lat: 34.356696}
-	//BD09ToGCJ02
+	//gocoord.BD09ToGCJ02(p)
 	// 谷歌地图显示为
 	// 113.733355， 34.350604
 	// 实际输出为gocoord.Position{Lon:113.73337197243862, Lat:34.350630274732744}
@@ -47,7 +46,7 @@ func main() {
 	p2 := gocoord.BD09ToGCJ02(p)
 	fmt.Printf("%#v\n", p2)
 
-	//BD09ToWGS84
+	//gocoord.BD09ToWGS84(p)
 	// 实际输出为 gocoord.Position{Lon:113.7272281721665, Lat:34.351951705458674}
 	fmt.Println("BD09转WGS84")
 	p2 = gocoord.BD09ToWGS84(p)
@@ -57,4 +56,3 @@ func main() {
 
 
 ```
-
